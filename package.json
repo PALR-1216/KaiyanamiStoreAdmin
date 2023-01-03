@@ -1,0 +1,21 @@
+{
+  "name": "kaiyanamistoreadmin",
+  "version": "1.0.0",
+  "description": "A Place to manage orders and inventory and profit",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PALR-1216/KaiyanamiStoreAdmin.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/PALR-1216/KaiyanamiStoreAdmin/issues"
+  },
+  "homepage": "https://github.com/PALR-1216/KaiyanamiStoreAdmin#readme"
+}
