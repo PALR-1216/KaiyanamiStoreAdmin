@@ -77,6 +77,21 @@ app.post('/login', (req,res, next) =>{
     }
 })
 
+
+app.get('/Orders', (req,res) =>{
+    let sql = `select * from orders`;
+    dbConnect.query(sql, (err,rows) =>{
+
+        res.render('Orders', {Orders:rows})
+    })
+
+   
+})
+
+app.get('/addOrder', (req,res) =>{
+    res.render('AddOrder')
+})
+
 app.listen(3000, () =>{
     console.log("Server running")
 })
