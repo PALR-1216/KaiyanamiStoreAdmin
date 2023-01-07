@@ -21,6 +21,22 @@
           <label for="Costumer_Phone" class="form-label">Costumers Phone Number</label>
           <input type="text" class="form-control" id="Phone_Number">
         </div>
+
+        <label>Choose Product</label>  
+
+        <select>  
+            <!-- make a loop to show all my products -->
+
+            <%for(i in inventory) {%>
+                <option><%=inventory[i].Product_Name%> || <%=inventory[i].Product_Price%></option>
+
+            <%}%>
+      </select>  
+
+        <div class="mb-3">
+            <label for="Notes" class="form-label">Request (Optional)</label>
+            <input type="text" class="form-control" id="Notes">
+          </div>
         
         <button type="submit" class="btn btn-primary">Submit Order</button>
       </form>

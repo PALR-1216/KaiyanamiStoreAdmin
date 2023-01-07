@@ -1,0 +1,71 @@
+
+<%- include("_navbar") -%>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Add Product</title>
+</head>
+<body>
+    <h1 style="text-align: center;">Add Product</h1>
+
+    <form style="padding: 35px;">
+        <div class="mb-3">
+          <label for="Product_Name" class="form-label">Product Name</label>
+          <input required type="text" placeholder="Enter the Name of the product" class="form-control" id="Product_Name" name="Product_Name">
+        </div>
+        <div class="mb-3">
+          <label for="Product_Category" class="form-label">Product Category</label>
+          <select class="form-select" aria-label="Default select example">
+            <%for(i in category) {%>
+                <option value="<%=category[i].category_id%>"><%=category[i].Category_Name%></option>
+            <%}%>
+          </select>
+        </div>
+
+        <div class="mb-3">
+            <label for="Product Price" class="form-label">Product Price</label>
+            <input required type="number" placeholder="Enter the sale price of the product $" class="form-control" id="Product_Price" name="Product_Price">
+          </div>
+
+          <div class="mb-3">
+            <label for="Price_per_Product" class="form-label">Cost to Make Product</label>
+            <input required type="number" placeholder="Enter the cost to make the Product $" class="form-control" id="Price_per_Product" name="Price_per_Product">
+          </div>
+
+
+        <div class="mb-3">
+            <label for="Product_Image" class="form-label">Product_Image</label>
+            <input required type="text" placeholder="Use imgBB to upload image to Link" onchange="LoadImage()" class="form-control" id="Product_Image" name="Product_Image">
+
+            <img class="Preview"  id="Preview" style="padding: 5px;"/>
+          </div>
+      
+        <button type="submit" class="btn btn-primary">Add Product</button>
+      </form>
+    
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    <script>
+        
+        function LoadImage() {
+            let imgLink = document.getElementById("Product_Image").value;
+            if(imgLink !="") {
+                document.getElementById("Preview").src = imgLink
+                document.getElementById("Preview").width = "200"
+                document.getElementById("Preview").heigth = "200"
+            }
+
+            
+        }
+
+    </script>
+</body>
+</html>

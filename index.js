@@ -79,18 +79,79 @@ app.post('/login', (req,res, next) =>{
 
 
 app.get('/Orders', (req,res) =>{
-    let sql = `select * from orders`;
-    dbConnect.query(sql, (err,rows) =>{
+
+    if(req.cookies.user_id) {
+        let sql = `select * from orders`;
+        dbConnect.query(sql, (err,rows) =>{
 
         res.render('Orders', {Orders:rows})
-    })
+        })
 
-   
+    }
+    else{
+        res.redirect('/')
+    }
 })
 
 app.get('/addOrder', (req,res) =>{
-    res.render('AddOrder')
+
+    if(req.cookies.user_id) {
+        dbConnect.query('select * from inventory', (err,rows) =>{
+            res.render('AddOrder', {inventory:rows})
+        })
+
+    }
+    else{
+        res.redirect('/')
+    }
+    
+    
 })
+
+app.get('/products', (req,res) =>{
+
+    if(req.cookies.user_id) {
+        dbConnect.query('select * from products',(err,rows) =>{
+            res.render('Product', {products:rows})
+        })
+
+    }
+    else{
+        res.redirect('/')
+    }
+})
+
+app.get('/addProduct', (req,res) =>{
+    if(req.cookies.user_id) {
+        dbConnect.query("select * from category",(err,rows) =>{
+            res.render('addProduct',{category:rows})
+
+        })
+
+        
+
+    }else{
+        res.redirect('/')
+    }
+
+})
+
+app.get('/logout', (req, res, next) => {
+
+    // req.session.destroy();
+
+    let cookie = req.cookies;
+    for (var prop in cookie) {
+        if (!cookie.hasOwnProperty(prop)) {
+            continue;
+        }
+        res.cookie(prop, '', {
+            expires: new Date(0)
+        });
+    }
+    res.redirect('/');
+})
+
 
 app.listen(3000, () =>{
     console.log("Server running")
