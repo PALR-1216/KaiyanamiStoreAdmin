@@ -14,14 +14,14 @@
 <body>
     <h1 style="text-align: center;">Add Product</h1>
 
-    <form style="padding: 35px;">
+    <form style="padding: 35px;" method="post" action="/addProduct">
         <div class="mb-3">
           <label for="Product_Name" class="form-label">Product Name</label>
           <input required type="text" placeholder="Enter the Name of the product" class="form-control" id="Product_Name" name="Product_Name">
         </div>
         <div class="mb-3">
           <label for="Product_Category" class="form-label">Product Category</label>
-          <select class="form-select" aria-label="Default select example">
+          <select class="form-select">
             <%for(i in category) {%>
                 <option value="<%=category[i].category_id%>"><%=category[i].Category_Name%></option>
             <%}%>

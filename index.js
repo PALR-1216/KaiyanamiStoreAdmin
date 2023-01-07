@@ -96,9 +96,13 @@ app.get('/Orders', (req,res) =>{
 app.get('/addOrder', (req,res) =>{
 
     if(req.cookies.user_id) {
-        dbConnect.query('select * from inventory', (err,rows) =>{
-            res.render('AddOrder', {inventory:rows})
+       dbConnect.query("select * from colors",(err,colors) =>{
+       
+        dbConnect.query("select * from products", (err, products) =>{
+            res.render('AddOrder', {Colors:colors, Products:products})
         })
+    
+       })
 
     }
     else{
@@ -134,6 +138,11 @@ app.get('/addProduct', (req,res) =>{
         res.redirect('/')
     }
 
+})
+
+app.post('/addProduct',(req,res) =>{
+   
+    let sql = ``
 })
 
 app.get('/logout', (req, res, next) => {

@@ -12,6 +12,7 @@
     <title>Add Order</title>
 </head>
 <body>
+  <h1 style="text-align: center;">Add Order</h1>
     <form style="padding: 25px;">
         <div class="mb-3">
           <label for="Costumer_Name" class="form-label">Costumers Name</label>
@@ -24,14 +25,39 @@
 
         <label>Choose Product</label>  
 
-        <select>  
+        <select class="form-select">
             <!-- make a loop to show all my products -->
-
-            <%for(i in inventory) {%>
-                <option><%=inventory[i].Product_Name%> || <%=inventory[i].Product_Price%></option>
+            <%for(i in Products) {%>
+              <option><%=Products[i].Product_Name%>  <%=Products[i].Product_Price%></option>
+              
 
             <%}%>
+          
+
+          
       </select>  
+        </div>
+
+      <div class="mb-3">
+      <label>Choose Size</label>  
+      <select class="form-select">
+        <option>Small</option>
+        <option>Medium</option>
+        <option>Large</option>
+        <option>XLarge</option>
+        <option>XXLarge</option>
+
+      </select>
+      </div>
+
+      <label>Choose Color</label>  
+      <select class="form-select">
+        <%for(i in Colors) {%>
+          <option><%=Colors[i].Color_Name%></option>
+
+        <%}%>
+      </select>
+
 
         <div class="mb-3">
             <label for="Notes" class="form-label">Request (Optional)</label>
