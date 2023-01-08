@@ -28,19 +28,20 @@
         <select class="form-select">
             <!-- make a loop to show all my products -->
             <%for(i in Products) {%>
-              <option><%=Products[i].Product_Name%>  <%=Products[i].Product_Price%></option>
+             
+              <option> <%=Products[i].Product_Name%> <%=Products[i].Product_Category%> $<%=Products[i].Product_Price%></option>
               
 
             <%}%>
-          
-
-          
       </select>  
         </div>
 
+   
+
+
       <div class="mb-3">
       <label>Choose Size</label>  
-      <select class="form-select">
+      <select required class="form-select">
         <option>Small</option>
         <option>Medium</option>
         <option>Large</option>
@@ -48,15 +49,34 @@
         <option>XXLarge</option>
 
       </select>
+
+
+      
       </div>
 
-      <label>Choose Color</label>  
-      <select class="form-select">
-        <%for(i in Colors) {%>
-          <option><%=Colors[i].Color_Name%></option>
+      <div class="mb-3">
 
-        <%}%>
-      </select>
+        <label>Choose Color</label>  
+        <select class="form-select">
+          <%for(i in Colors) {%>
+            <option><%=Colors[i].Color_Name%></option>
+
+          <%}%>
+        </select>
+      </div>
+
+
+      <div class="mb-3">
+        <label>Payment</label>  
+        <select required class="form-select">
+          <option>Pending</option>
+          <option>Paid</option>
+          <option>Deposit</option>
+
+        </select>
+        </div>
+  
+
 
 
         <div class="mb-3">

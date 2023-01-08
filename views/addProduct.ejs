@@ -21,21 +21,32 @@
         </div>
         <div class="mb-3">
           <label for="Product_Category" class="form-label">Product Category</label>
-          <select class="form-select">
+          <select class="form-select" name="Category" id="Category">
             <%for(i in category) {%>
-                <option value="<%=category[i].category_id%>"><%=category[i].Category_Name%></option>
+                <option  value="<%=category[i].Category_Name%>"><%=category[i].Category_Name%></option>
             <%}%>
           </select>
+
         </div>
 
         <div class="mb-3">
+            <label for="Product_Color" class="form-label">Product Color</label>
+            <select class="form-select" name="Color" id="Color">
+              <%for(i in Colors) {%>
+                  <option selected  value="<%=Colors[i].Color_Name%>"><%=Colors[i].Color_Name%></option>
+              <%}%>
+            </select>
+  
+          </div>
+
+        <div class="mb-3">
             <label for="Product Price" class="form-label">Product Price</label>
-            <input required type="number" placeholder="Enter the sale price of the product $" class="form-control" id="Product_Price" name="Product_Price">
+            <input required type="number"  step="any" placeholder="Enter the sale price of the product $" class="form-control" id="Product_Price" name="Product_Price">
           </div>
 
           <div class="mb-3">
             <label for="Price_per_Product" class="form-label">Cost to Make Product</label>
-            <input required type="number" placeholder="Enter the cost to make the Product $" class="form-control" id="Price_per_Product" name="Price_per_Product">
+            <input required type="number" step="any" placeholder="Enter the cost to make the Product $" class="form-control" id="Price_per_Product" name="Price_per_Product">
           </div>
 
 

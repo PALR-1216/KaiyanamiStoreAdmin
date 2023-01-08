@@ -128,8 +128,10 @@ app.get('/products', (req,res) =>{
 app.get('/addProduct', (req,res) =>{
     if(req.cookies.user_id) {
         dbConnect.query("select * from category",(err,rows) =>{
-            res.render('addProduct',{category:rows})
+            dbConnect.query('select * from colors',(err,colors) =>{
+                res.render('addProduct',{category:rows, Colors:colors})
 
+            })
         })
 
         
@@ -142,7 +144,9 @@ app.get('/addProduct', (req,res) =>{
 
 app.post('/addProduct',(req,res) =>{
    
-    let sql = ``
+   
+    let sql = `insert into products (Product_Name, Product_Image, Product_Price, Product_Category, Cost_Per_Product) values("${req.body.Product_Name}", "${req.body.Product_Image}" ,${req.body.Product_Price}, "${req.body.Category}", ${req.body.Price_per_Product})`
+    dbConnect.commit(sql)
 })
 
 app.get('/logout', (req, res, next) => {
