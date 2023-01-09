@@ -15,34 +15,47 @@
 <body>
     <a href="/addProduct">Add New Product</a>
 
+   <script>
+    let width = screen.width
+   
+   </script>
+    <!-- remove this to not have spacing  -->
+    <!-- <div class="container"> -->
+      <div class="table-responsive">
+      
 
-    <table class="table table-bordered border-primary">
+    <table class="table table-bordered border-primary table-hover table-sm table-responsive">
         <th>Product_ID</th>
         <th>Product_Name</th>
         <th>Product_Image</th>
         <th>Product_Price</th>
         <th>Product_Category</th>
         <th>Product_Color</th>
+        <th>Edit Or Delete</th>
         <!-- <th>Cost_Per_Product</th> -->
           <tbody>
             <%for(i in products) {%>
               <tr>
                 <td><%=products[i].Product_Id%></td>
                 <td><%=products[i].Product_Name%></td>
-                <td><img src="<%=products[i].Product_Image%>" width="100" height="90"/></td>
+                <td><a href="<%=products[i].Product_Image%>" ><img src="<%=products[i].Product_Image%>" width="80" height="60"/></a></td>
                 <td>$ <%=products[i].Product_Price%></td>
                 <td><%=products[i].Product_Category%></td>
                 <td><%=products[i].Product_Color%></td>
+                <!-- <td><a href="/EditProduct/<%=products[i].Product_Name%>/<%=products[i].Product_Price%>/<%=products[i].Product_Color%>/<%=products[i].Cost_Per_Product%>">Edit</a> || <a href="#">Delete</a></td> -->
+                <td><a href="#">Delete</a></td>
               </tr>
 
             <%}%>
             
           </tbody>
       </table>
+      </div>
+
+    <!-- </div> -->
 
 
-
-
+    <script src="extensions/resizable/bootstrap-table-resizable.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 
