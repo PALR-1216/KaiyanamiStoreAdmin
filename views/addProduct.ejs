@@ -23,7 +23,7 @@
           <label for="Product_Category" class="form-label">Product Category</label>
           <select class="form-select" name="Category" id="Category">
             <%for(i in category) {%>
-                <option  value="<%=category[i].Category_Name%>"><%=category[i].Category_Name%></option>
+                <option  value="<%=category[i].category_Name%>"><%=category[i].category_Name%></option>
             <%}%>
           </select>
 
@@ -31,11 +31,7 @@
 
         <div class="mb-3">
             <label for="Product_Color" class="form-label">Product Color</label>
-            <select class="form-select" name="Color" id="Color">
-              <%for(i in Colors) {%>
-                  <option selected  value="<%=Colors[i].Color_Name%>"><%=Colors[i].Color_Name%></option>
-              <%}%>
-            </select>
+            <input type="text" placeholder="Enter the color of the product" class="form-control" id="Color" name="Color"/>
   
           </div>
 

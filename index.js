@@ -33,10 +33,11 @@ app.use(session({
 
 
 let dbConnect = mysql.createConnection({
-    host:"localhost",
+    host:"buhpgq3jgswjlmd10cnf-mysql.services.clever-cloud.com",
     port:3306,
-    user:"root",
-    database:"kaiyanamiadmin",
+    user:"u3sz15c6pq1bogtq",
+    password:"b4XsJn4BerVXht9nodg8",
+    database:"buhpgq3jgswjlmd10cnf",
 })
 
 
@@ -129,11 +130,12 @@ app.get('/products', (req,res) =>{
 
 app.get('/addProduct', (req,res) =>{
     if(req.cookies.user_id) {
-        dbConnect.query("select * from category",(err,rows) =>{
-            dbConnect.query('select * from colors',(err,colors) =>{
-                res.render('addProduct',{category:rows, Colors:colors})
+        dbConnect.query("select * from Category",(err,rows) =>{
+            // dbConnect.query('select * from colors',(err,colors) =>{
+                res.render('addProduct',{category:rows})
 
-            })
+
+            // })
         })
 
         
@@ -147,7 +149,7 @@ app.get('/addProduct', (req,res) =>{
 app.post('/addProduct',(req,res) =>{
    
    
-    let sql = `insert into products (Product_Name, Product_Image, Product_Price, Product_Category, Cost_Per_Product) values("${req.body.Product_Name}", "${req.body.Product_Image}" ,${req.body.Product_Price}, "${req.body.Category}", ${req.body.Price_per_Product})`
+    let sql = `insert into Products (Product_Name, Product_Image, Product_Price, Product_Category, Cost_Per_Product) values("${req.body.Product_Name}", "${req.body.Product_Image}" ,${req.body.Product_Price}, "${req.body.Category}", ${req.body.Price_per_Product})`
     dbConnect.commit(sql)
 })
 
@@ -179,6 +181,12 @@ app.get('/logout', (req, res, next) => {
     }
     res.redirect('/');
 })
+
+
+//function so the server doesent go to sleep
+setInterval(function () {
+    dbConnect.query('SELECT 1');
+}, 5000);
 
 
 app.listen(3000, () =>{
