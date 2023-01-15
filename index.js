@@ -118,8 +118,8 @@ app.get('/products', (req,res) =>{
     if(req.cookies.user_id) {
 
        
-        dbConnect.query('select * from products',(err,rows) =>{
-            res.render('Product', {products:rows, screenWidth:0})
+        dbConnect.query('select * from Products',(err,rows) =>{
+            res.render('Product', {products:rows})
         })
 
     }
@@ -149,8 +149,13 @@ app.get('/addProduct', (req,res) =>{
 app.post('/addProduct',(req,res) =>{
    
    
-    let sql = `insert into Products (Product_Name, Product_Image, Product_Price, Product_Category, Cost_Per_Product) values("${req.body.Product_Name}", "${req.body.Product_Image}" ,${req.body.Product_Price}, "${req.body.Category}", ${req.body.Price_per_Product})`
+    let sql = `insert into Products (Product_Name, product_Image, product_Price, Product_Category, Cost_Per_Product) values("${req.body.Product_Name}", "${req.body.Product_Image}" ,${req.body.Product_Price}, "${req.body.Category}", ${req.body.Price_per_Product})`
     dbConnect.commit(sql)
+    // dbConnect.query(sql,(err,rows) =>{
+    //     if(err) { throw err}
+    //     console.log(rows)
+    // })
+    res.redirect('/products')
 })
 
 
