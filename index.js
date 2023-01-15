@@ -149,7 +149,7 @@ app.get('/addProduct', (req,res) =>{
 app.post('/addProduct',(req,res) =>{
    
    
-    let sql = `insert into Products (Product_Name, product_Image, product_Price, Product_Category, Cost_Per_Product) values("${req.body.Product_Name}", "${req.body.Product_Image}" ,${req.body.Product_Price}, "${req.body.Category}", ${req.body.Price_per_Product})`
+    let sql = `insert into Products (Product_Name, product_Image, product_Price, Product_Category, Cost_Per_Product, Product_Color) values("${req.body.Product_Name}", "${req.body.Product_Image}" ,${req.body.Product_Price}, "${req.body.Category}", ${req.body.Price_per_Product}, "${req.body.Color}")`
     dbConnect.commit(sql)
     // dbConnect.query(sql,(err,rows) =>{
     //     if(err) { throw err}
