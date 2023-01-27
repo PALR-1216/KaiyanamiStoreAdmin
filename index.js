@@ -32,12 +32,21 @@ app.use(session({
 }))
 
 
+// let dbConnect = mysql.createConnection({
+//     host:"buhpgq3jgswjlmd10cnf-mysql.services.clever-cloud.com",
+//     port:3306,
+//     user:"u3sz15c6pq1bogtq",
+//     password:"b4XsJn4BerVXht9nodg8",
+//     database:"buhpgq3jgswjlmd10cnf",
+// })
+
+
 let dbConnect = mysql.createConnection({
-    host:"buhpgq3jgswjlmd10cnf-mysql.services.clever-cloud.com",
-    port:3306,
-    user:"u3sz15c6pq1bogtq",
-    password:"b4XsJn4BerVXht9nodg8",
-    database:"buhpgq3jgswjlmd10cnf",
+    host:"localhost",
+    port:8889,
+    user:"root",
+    password:"root",
+    database:"Kaiyanami",
 })
 
 
@@ -149,7 +158,7 @@ app.get('/addProduct', (req,res) =>{
 app.post('/addProduct',(req,res) =>{
    
    
-    let sql = `insert into Products (Product_Name, product_Image, product_Price, Product_Category, Cost_Per_Product, Product_Color) values("${req.body.Product_Name}", "${req.body.Product_Image}" ,${req.body.Product_Price}, "${req.body.Category}", ${req.body.Price_per_Product}, "${req.body.Color}")`
+    let sql = `insert into Products (Product_Name, product_Image, product_Price, Product_Category, Cost_Per_Product) values("${req.body.Product_Name}", "${req.body.Product_Image}" ,${req.body.Product_Price}, "${req.body.Category}", ${req.body.Price_per_Product})`
     dbConnect.commit(sql)
     // dbConnect.query(sql,(err,rows) =>{
     //     if(err) { throw err}
@@ -159,13 +168,12 @@ app.post('/addProduct',(req,res) =>{
 })
 
 
-app.get('/EditProduct/:Name/:Price/:Color/:costToMake', (req,res) =>{
+app.get('/EditProduct/:Name/:Price/:costToMake', (req,res) =>{
     if(req.cookies.user_id) {
     
-            dbConnect.query('select * from colors',(err,colors) =>{
-                res.render('EditProduct',{ Colors:colors, Name:req.params.Name, Price:req.params.Price, Cost:req.params.costToMake, Color:req.params.Color})
+                res.render('EditProduct',{  Name:req.params.Name, Price:req.params.Price, Cost:req.params.costToMake})
 
-            })
+
     }else{
         res.redirect('/')
     }

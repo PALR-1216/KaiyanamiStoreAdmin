@@ -30,7 +30,7 @@
         <th>Product_Image</th>
         <th>Product_Price</th>
         <th>Product_Category</th>
-        <th>Product_Color</th>
+        <!-- <th>Product_Color</th> -->
         <th>Edit Or Delete</th>
         <!-- <th>Cost_Per_Product</th> -->
           <tbody>
@@ -41,9 +41,8 @@
                 <td><a href="<%=products[i].product_Image%>" ><img src="<%=products[i].product_Image%>" width="80" height="60"/></a></td>
                 <td>$ <%=products[i].product_Price%></td>
                 <td><%=products[i].Product_Category%></td>
-                <td><%=products[i].Product_Color%></td>
-                <!-- <td><a href="/EditProduct/<%=products[i].Product_Name%>/<%=products[i].Product_Price%>/<%=products[i].Product_Color%>/<%=products[i].Cost_Per_Product%>">Edit</a> || <a href="#">Delete</a></td> -->
-                <td><a href="#">Delete</a></td>
+
+                <td><a href="#">Delete</a>  <a href="/EditProduct/<%=products[i].Product_Name%>/<%=products[i].product_Price%>/<%=products[i].Cost_Per_Product%>">Edit</a></td>
               </tr>
 
             <%}%>
