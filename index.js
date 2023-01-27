@@ -224,11 +224,24 @@ app.post('/UpdateProduct/:ID',(req,res) =>{
 
 
 
+
 app.get("/DeleteRow/:ID", (req,res) =>{
     let sql =  `delete from Products where product_Id = ${req.params.ID}`
     dbConnect.commit(sql)
     res.redirect('/products')
 })
+
+
+
+app.post("/AddOrder",(req,res) =>{
+    let obj = {
+        
+    }
+
+})
+
+
+
 
 app.get('/logout', (req, res, next) => {
 
