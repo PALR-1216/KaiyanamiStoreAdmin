@@ -106,20 +106,20 @@ app.get('/Orders', (req,res) =>{
 app.get('/addOrder', (req,res) =>{
 
     if(req.cookies.user_id) {
-       dbConnect.query("select * from colors",(err,colors) =>{
        
         dbConnect.query("select * from products", (err, products) =>{
-            res.render('AddOrder', {Colors:colors, Products:products})
+            res.render('AddOrder', { Products:products})
         })
-    
-       })
-
     }
     else{
         res.redirect('/')
     }
     
     
+})
+
+app.post('/AddOrder',(req,res) =>{
+    //TODO:add order to database here!!
 })
 
 app.get('/products', (req,res) =>{
