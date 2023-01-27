@@ -120,6 +120,11 @@ app.get('/addOrder', (req,res) =>{
 
 app.post('/AddOrder',(req,res) =>{
     //TODO:add order to database here!!
+
+    let name = req.body.Costumer_Name
+    let phone =  req.body.Phone_Number || "None"
+    let product = req.body.Product 
+
 })
 
 app.get('/products', (req,res) =>{
@@ -168,15 +173,61 @@ app.post('/addProduct',(req,res) =>{
 })
 
 
-app.get('/EditProduct/:Name/:Price/:costToMake', (req,res) =>{
+app.get('/EditProduct/:ID', (req,res) =>{
     if(req.cookies.user_id) {
+
+
+        let sql =  `select * from Products where product_Id = ${req.params.ID}`
+
+        dbConnect.query(sql,(err,rows) =>{
+            // let Name = rows[0].Product_Name
+            // let Product_Image = rows[0].Product_Image
+            // let Product_Price = rows[0].Product_Price
+            // let productCat = rows[0].Product_Category
+            // let Cost_To_Make = rows[0].Cost_Per_Product
+
+            let obj = {
+                ID:rows[0].product_Id,
+                Name: rows[0].Product_Name,
+                Product_Image:rows[0].product_Image,
+                productCat:rows[0].Product_Category,
+                Price:rows[0].product_Price,
+                Cost_To_Make:rows[0].Cost_Per_Product
+
+
+
+            }
+            //Render a view with the data of the database
+
+            res.render('EditProduct',{  Name:obj.Name, Price:obj.Price, Cost:obj.Cost_To_Make, Image:obj.Product_Image, Cat:obj.productCat, ID:obj.ID})
+
+
+        })
     
-                res.render('EditProduct',{  Name:req.params.Name, Price:req.params.Price, Cost:req.params.costToMake})
 
 
     }else{
         res.redirect('/')
     }
+})
+
+
+app.post('/UpdateProduct/:ID',(req,res) =>{
+
+    let sql = `update Products set Product_Name = "${req.body.Product_Name}", product_Price = ${req.body.Product_Price}, Cost_Per_Product = ${req.body.Price_per_Product}, product_Image = "${req.body.Image}" where product_Id = ${req.params.ID}; `
+    dbConnect.commit(sql)
+    res.redirect('/products')
+
+
+
+})
+
+
+
+app.get("/DeleteRow/:ID", (req,res) =>{
+    let sql =  `delete from Products where product_Id = ${req.params.ID}`
+    dbConnect.commit(sql)
+    res.redirect('/products')
 })
 
 app.get('/logout', (req, res, next) => {

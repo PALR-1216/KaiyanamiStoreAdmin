@@ -42,7 +42,7 @@
                 <td>$ <%=products[i].product_Price%></td>
                 <td><%=products[i].Product_Category%></td>
 
-                <td><a href="#">Delete</a>  <a href="/EditProduct/<%=products[i].Product_Name%>/<%=products[i].product_Price%>/<%=products[i].Cost_Per_Product%>">Edit</a></td>
+                <td><a href="/DeleteRow/<%=products[i].product_Id%>">Delete</a>  <a href="/EditProduct/<%=products[i].product_Id%>">Edit</a></td>
               </tr>
 
             <%}%>

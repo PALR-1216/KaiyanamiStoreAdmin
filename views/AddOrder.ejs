@@ -20,12 +20,12 @@
         
         <div class="mb-3">
           <label for="Costumer_Phone" class="form-label">Costumers Phone Number</label>
-          <input  type="text" class="form-control" id="Phone_Number">
+          <input  type="text" class="form-control" id="Phone_Number" name="Phone_Number">
         </div>
 
         <label>Choose Product</label>  
 
-        <select class="form-select">
+        <select class="form-select" name="Product">
             <!-- make a loop to show all my products -->
             <%for(i in Products) {%>
              
@@ -58,6 +58,13 @@
         <label for="Color" class="form-label">Color of the Shirt</label>
         <input required type="text" class="form-control" name="Color" id="Color">
       </div>
+
+      
+      <div class="mb-3">
+        <label for="Discount">Discount Added (Optional)</label>
+        <input type="Number" step=".5" id="Discount" name="Discount"/>
+
+      </div>
      
 
 
@@ -71,6 +78,11 @@
         </select>
         </div>
 
+          
+     
+  
+
+       
         <div class="mb-3">
           <label for="Delivery_Date">Delivery Date</label>
           <input type="date" id="start" name="Delivery_Date"/>

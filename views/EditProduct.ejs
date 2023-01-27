@@ -14,7 +14,8 @@
 <body>
     <h1 style="text-align: center;">Edit Product</h1>
 
-    <form style="padding: 35px;" method="post" action="/UpdateProduct">
+    <form style="padding: 35px;" method="post" action="/UpdateProduct/<%=ID%>">
+      
         <div class="mb-3">
           <label for="Product_Name" class="form-label">Product Name</label>
           <input required type="text" placeholder="Enter the Name of the product" class="form-control" id="Product_Name" name="Product_Name" value="<%=Name%>">
@@ -30,6 +31,13 @@
           <div class="mb-3">
             <label for="Price_per_Product" class="form-label">Cost to Make Product</label>
             <input required type="number" step="any" placeholder="Enter the cost to make the Product $" class="form-control" id="Price_per_Product" name="Price_per_Product" value="<%=Cost%>">
+          </div>
+
+          <div class="mb-3">
+            <label for="Product_Image" class="form-label">Product_Image</label>
+            <input required type="text" placeholder="Use imgBB to upload image to Link"   onfocus="LoadImage()" class="form-control" id="Product_Image" name="Image" value="<%=Image%>">
+
+            <img class="Preview"  id="Preview" style="padding: 5px;"/>
           </div>
 
 
