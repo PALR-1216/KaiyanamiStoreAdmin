@@ -124,6 +124,19 @@ app.post('/AddOrder',(req,res) =>{
     let name = req.body.Costumer_Name
     let phone =  req.body.Phone_Number || "None"
     let product = req.body.Product 
+    let Size = req.body.Size
+    let Color = req.body.Color
+    let Discount = req.body.Discount || 0
+    let payment = req.body.payment
+    let DeliveryDate = req.body.Delivery_Date
+    let SepcialRequest = req.body.Request || "None"
+    
+
+    // dbConnect.query(`select * from Products where product_Id = ${product}`, (err,rows) =>{
+    // })
+
+
+    let sql = `insert into Orders (Date_Added, Client_Name, Client_Phone_Number, Price_Of_Shirt, Color_Of_Shirt, Size_Of_Shirt, Product, Payment_Status, Discount, Date_Of_Delivery) `
 
 })
 
@@ -235,7 +248,13 @@ app.get("/DeleteRow/:ID", (req,res) =>{
 
 app.post("/AddOrder",(req,res) =>{
     let obj = {
-        
+        Name:req.body.Costumer_Name,
+        Phone:req.body.Phone_Number || "NONE",
+        Product_Id:req.body.Product,
+        Size:req.body.Size,
+
+
+
     }
 
 })

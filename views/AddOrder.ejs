@@ -29,7 +29,7 @@
             <!-- make a loop to show all my products -->
             <%for(i in Products) {%>
              
-              <option value="<%=Products[i].Product_Id%>"> <%=Products[i].Product_Name%> <%=Products[i].Product_Category%> $<%=Products[i].product_Price%></option>
+              <option value="<%=Products[i].product_Id%>" > <%=Products[i].Product_Name%> <%=Products[i].Product_Category%> $<%=Products[i].product_Price%></option>
               
 
             <%}%>
@@ -41,7 +41,7 @@
 
       <div class="mb-3">
       <label>Choose Size</label>  
-      <select required class="form-select">
+      <select required class="form-select" name="Size">
         <option value="Small">Small</option>
         <option value="Medium">Medium</option>
         <option value="Large">Large</option>
@@ -70,7 +70,7 @@
 
       <div class="mb-3">
         <label>Payment</label>  
-        <select required class="form-select">
+        <select required class="form-select" name="Payment">
           <option value="Pending">Pending</option>
           <option value="Paid">Paid</option>
           <option value="Deposit">Deposit</option>
@@ -94,7 +94,7 @@
 
         <div class="mb-3">
             <label for="Notes" class="form-label">Special Request (Optional)</label>
-            <input type="text" class="form-control" id="Notes">
+            <input type="text" class="form-control" id="Notes" name="Request">
           </div>
         
         <button type="submit" class="btn btn-primary">Submit Order</button>
