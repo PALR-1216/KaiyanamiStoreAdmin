@@ -1,3 +1,6 @@
+
+<%- include("_navbar") -%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,10 +9,111 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
-    <title>Edit Order</title>
+    <title>Add Order</title>
 </head>
 <body>
-    
-    
+  <h1 style="text-align: center;">Edit Order</h1>
+  <%for(i in Orders) {%>
+
+ 
+    <form style="padding: 25px;" method="post" action="/AddOrder">
+        <div class="mb-3">
+          <label for="Costumer_Name" class="form-label">Costumers Name</label>
+          <input required type="text" class="form-control" id="Costumer_Name" name="Costumer_Name"  value="<%=Orders[0].Client_Name%>">
+        
+        <div class="mb-3">
+          <label for="Costumer_Phone" class="form-label">Costumers Phone Number</label>
+          <input  type="text" class="form-control" id="Phone_Number" name="Phone_Number" value="<%=Orders[0].Client_Phone_Number%>">
+        </div>
+
+        <label>Choose Product</label>  
+        <h5>Already selected: <strong><%=Orders[0].Product%> $<%=Orders[0].Price_Of_Shirt%></strong></h5>
+        <select class="form-select" name="Product">
+            <!-- make a loop to show all my products -->
+          
+            <%for(i in Products) {%>
+             
+              <option value="<%=Products[i].product_Id%>" > <%=Products[i].Product_Name%> <%=Products[i].Product_Category%> $<%=Products[i].product_Price%></option>
+              
+
+            <%}%>
+      </select>  
+        </div>
+
+   <!-- TODO: add un discount feature para descontar algunas ordenes -->
+
+
+      <div class="mb-3">
+      <label>Choose Size</label>  
+      <select required class="form-select" name="Size">
+        <option value="Small">Small</option>
+        <option value="Medium">Medium</option>
+        <option value="Large">Large</option>
+        <option value="XLarge">XLarge</option>
+        <option value="XXLarge">XXLarge</option>
+
+      </select>
+
+
+      
+      </div>
+
+      <div class="mb-3">
+        <label for="Color" class="form-label">Color of the Shirt</label>
+        <input required type="text" class="form-control" name="Color" id="Color">
+      </div>
+
+      
+      <div class="mb-3">
+        <label for="Discount">Discount Added (Optional)</label>
+        <input type="Number" step=".5" id="Discount" name="Discount"/>
+
+      </div>
+     
+
+
+      <div class="mb-3">
+        <label>Payment</label>  
+        <select required class="form-select" name="Payment">
+          <option value="Pending">Pending</option>
+          <option value="Paid">Paid</option>
+          <option value="Deposit">Deposit</option>
+
+        </select>
+        </div>
+
+          
+     
+  
+
+       
+        <div class="mb-3">
+          <label for="Delivery_Date">Delivery Date</label>
+          <input type="date" id="start" name="Delivery_Date"/>
+
+        </div>
+  
+
+
+
+        <div class="mb-3">
+            <label for="Notes" class="form-label">Special Request (Optional)</label>
+            <input type="text" class="form-control" id="Notes" name="Request">
+          </div>
+        
+        <button type="submit" class="btn btn-primary">Update Order</button>
+      </form>
+      <%}%>
+        
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+   
 </body>
+
+<style>
+     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+    *{
+      font-family: 'Poppins', sans-serif;
+    }
+</style>
 </html>

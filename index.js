@@ -141,12 +141,40 @@ app.post('/AddOrder',(req,res) =>{
 
     today = yyyy + '-' + mm + '-' + dd;
 
+    if(Discount > 1) {
+        let TotalWithDiscount = rows[0].product_Price - Discount
+        let sql = `insert into Orders (Date_Added, Client_Name, Client_Phone_Number, Price_Of_Shirt, Color_Of_Shirt, Size_Of_Shirt, Product, Category , Payment_Status, Discount, Special_request, Date_Of_Delivery) values ("${today}", "${name}", "${phone}", ${TotalWithDiscount}, "${Color}", "${Size}", "${rows[0].Product_Name}", "${rows[0].Product_Category}", "${payment}", ${Discount}, "${Special_request}", "${DeliveryDate}");`;
+        dbConnect.commit(sql)
+        res.redirect('/Orders')
 
-    let sql = `insert into Orders (Date_Added, Client_Name, Client_Phone_Number, Price_Of_Shirt, Color_Of_Shirt, Size_Of_Shirt, Product, Payment_Status, Discount, Special_request, Date_Of_Delivery) values ("${today}", "${name}", "${phone}", ${rows[0].product_Price}, "${Color}", "${Size}", "${rows[0].Product_Name} - ${rows[0].Product_Category}", "${payment}", ${Discount}, "${Special_request}", "${DeliveryDate}");`;
-    dbConnect.commit(sql)
-    res.redirect('/Orders')
+    }
+    else{
 
+        let sql = `insert into Orders (Date_Added, Client_Name, Client_Phone_Number, Price_Of_Shirt, Color_Of_Shirt, Size_Of_Shirt, Product, Category , Payment_Status, Discount, Special_request, Date_Of_Delivery) values ("${today}", "${name}", "${phone}", ${rows[0].product_Price}, "${Color}", "${Size}", "${rows[0].Product_Name}", "${rows[0].Product_Category}", "${payment}", ${Discount}, "${Special_request}", "${DeliveryDate}");`;
+        dbConnect.commit(sql)
+        res.redirect('/Orders')
+
+        }
     })
+})
+
+
+app.get('/EditOrder/:ID', (req,res) =>{
+    if(req.cookies.user_id) {
+       
+        dbConnect.query("select * from products", (err, products) =>{
+            dbConnect.query(`select * from Orders where Order_ID = ${req.params.ID}`, (err,Order) =>{
+
+                res.render('EditOrder', { Products:products, Orders:Order})
+            })
+           
+        })
+    }
+    else{
+        res.redirect('/')
+    }
+    
+    
 })
 
 app.get('/products', (req,res) =>{
@@ -249,7 +277,8 @@ app.post('/UpdateProduct/:ID',(req,res) =>{
 
 app.get("/DeleteRow/:ID", (req,res) =>{
     let sql =  `delete from Products where product_Id = ${req.params.ID}`
-    dbConnect.commit(sql)
+    //TODO:make a area to confirm to delete product
+    // dbConnect.commit(sql)
     res.redirect('/products')
 })
 
