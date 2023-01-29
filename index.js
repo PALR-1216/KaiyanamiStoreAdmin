@@ -127,17 +127,26 @@ app.post('/AddOrder',(req,res) =>{
     let Size = req.body.Size
     let Color = req.body.Color
     let Discount = req.body.Discount || 0
-    let payment = req.body.payment
-    let DeliveryDate = req.body.Delivery_Date
-    let SepcialRequest = req.body.Request || "None"
+    let payment = req.body.Payment
+    let DeliveryDate = req.body.Delivery_Date || "No Delivery Date"
+    let Special_request = req.body.Request || "None"
+
+
+    dbConnect.query(`select * from Products where product_Id = ${product}`, (err,rows) =>{
     
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
 
-    // dbConnect.query(`select * from Products where product_Id = ${product}`, (err,rows) =>{
-    // })
+    today = yyyy + '-' + mm + '-' + dd;
 
 
-    let sql = `insert into Orders (Date_Added, Client_Name, Client_Phone_Number, Price_Of_Shirt, Color_Of_Shirt, Size_Of_Shirt, Product, Payment_Status, Discount, Date_Of_Delivery) `
+    let sql = `insert into Orders (Date_Added, Client_Name, Client_Phone_Number, Price_Of_Shirt, Color_Of_Shirt, Size_Of_Shirt, Product, Payment_Status, Discount, Special_request, Date_Of_Delivery) values ("${today}", "${name}", "${phone}", ${rows[0].product_Price}, "${Color}", "${Size}", "${rows[0].Product_Name} - ${rows[0].Product_Category}", "${payment}", ${Discount}, "${Special_request}", "${DeliveryDate}");`;
+    dbConnect.commit(sql)
+    res.redirect('/Orders')
 
+    })
 })
 
 app.get('/products', (req,res) =>{
